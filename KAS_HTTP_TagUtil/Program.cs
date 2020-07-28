@@ -173,185 +173,20 @@ namespace KAS_HTTP_TEST {
 			catch (WebException someWebException) // If server returns some error code
 			{
 				if (null != ((HttpWebResponse)someWebException.Response)) {
-                    Stream reader = ((HttpWebResponse)someWebException.Response).GetResponseStream();
-                    byte[] message = new byte[reader.Length];
-                    reader.Read(message, 0, (int)reader.Length);
-                    string httpErrorCode = someWebException.Message;
-                    //string httpErrorDescription = Encoding.ASCII.GetString(message);
-                }
-                Console.WriteLine(someWebException.Message);
+					Stream reader = ((HttpWebResponse)someWebException.Response).GetResponseStream();
+					byte[] message = new byte[reader.Length];
+					reader.Read(message, 0, (int)reader.Length);
+					string httpErrorCode = someWebException.Message;
+					//string httpErrorDescription = Encoding.ASCII.GetString(message);
+				}
+				Console.WriteLine(someWebException.Message);
 			}
 			catch (Exception someException) // If some other exception happens
 			{
-                Console.WriteLine(someException.Message);
-				
+				Console.WriteLine(someException.Message);
+
 			}
 		}
-
-
-		public void SendSingleVar(string VarName, string VarValue) {
-			string controllerIPAddress = IPAddr;
-
-			string httpInterfaceURL = "/kas/plcvariables";
-			string format = "text"; // "json" is also supported
-
-			//int tooth_num = 1;
-			string httpRequestBody = "";
-			//int tooth_num=1;
-
-
-			// Create the "text" request body with variable value pair separated by comma
-			//string httpRequestBody = "travelspeed=500.0,machinespeed=250.0,machinestate=1";
-
-			//double Force = SawData.Finish_Force;
-
-			double Force = 101;
-
-			//httpRequestBody = "Stepper_MovetoSaved=1";
-			httpRequestBody = VarName + "=" + VarValue;
-
-
-			long str_Length = httpRequestBody.Length;
-
-			try {
-				// Convert the string to byte array
-				byte[] RequestBodyInByteArray = Encoding.ASCII.GetBytes(httpRequestBody);
-				WebClient client = new WebClient();
-				// Send the PUT request
-				byte[] responseInByteArray = client.UploadData(controllerIPAddress + httpInterfaceURL + "?format=" + format, "PUT", RequestBodyInByteArray);
-				// The httpResponseBody will contain the comma separated errorstatus for each variable.
-				string httpResponseBody = Encoding.ASCII.GetString(responseInByteArray);
-			}
-			catch (WebException someWebException) // if server returns some error code
-			{
-				string httpErrorCode = someWebException.Message;
-				if (null != ((HttpWebResponse)someWebException.Response)) {
-					Stream reader = ((HttpWebResponse)someWebException.Response).GetResponseStream();
-					byte[] message = new byte[reader.Length];
-					reader.Read(message, 0, (int)reader.Length);
-					string httpErrorDescription = Encoding.ASCII.GetString(message);
-				}
-			}
-			catch (Exception someException) // if some other exception happens
-			{
-				string exceptionMessage = someException.Message;
-			}
-		}// end of "SendSinglevar"
-
-
-		public string GetKasVariable(string kasVariable) {
-			//var wc As WebClient;
-			//if (!Globals.Tags.GroupReady.Value) {
-			//	return "";
-			//}
-
-			var wc = new WebClient();
-			string searchaddress = "http://192.168.0.102/kas/plcvariables?variables=";
-			try {
-				string returnVar = "";
-				returnVar = wc.DownloadString(searchaddress + kasVariable);
-				//textBox1.Text = Convert.ToString(res);
-				return returnVar;
-			}
-			catch {
-				//textBox1.Text = "Fail";
-				return "0";
-			}
-		}
-
-		public void SendToolPathMajorpoints_vpd(int toothnum) {
-			string controllerIPAddress = "http://192.168.0.102"; // Replace this with your Controller IP address
-			string httpInterfaceURL = "/kas/plcvariables";
-			string format = "text"; // "json" is also supported
-
-			//int tooth_num = 1;
-			string sendString = "";
-			//int tooth_num=1;
-
-
-			// Create the "text" request body with variable value pair separated by comma
-			//string httpRequestBody = "travelspeed=500.0,machinespeed=250.0,machinestate=1";
-
-			// round all of the variables before we send them to the controller so the "send" string is shorter
-
-			//pt1_vpd_x[toothnum] = Math.Round(pt1_vpd_x[toothnum], 4);
-			//pt1_vpd_y[toothnum] = Math.Round(pt1_vpd_y[toothnum], 4);
-			//pt2_vpd_x[toothnum] = Math.Round(pt2_vpd_x[toothnum], 4);
-			//pt2_vpd_y[toothnum] = Math.Round(pt2_vpd_y[toothnum], 4);
-			//pt3_vpd_x[toothnum] = Math.Round(pt3_vpd_x[toothnum], 4);
-			//pt3_vpd_y[toothnum] = Math.Round(pt3_vpd_y[toothnum], 4);
-			//pt4_vpd_x[toothnum] = Math.Round(pt4_vpd_x[toothnum], 4);
-			//pt4_vpd_y[toothnum] = Math.Round(pt4_vpd_y[toothnum], 4);
-			//pt5_vpd_x[toothnum] = Math.Round(pt5_vpd_x[toothnum], 4);
-			//pt5_vpd_y[toothnum] = Math.Round(pt5_vpd_y[toothnum], 4);
-
-
-
-			//ptG2_vpd_x[toothnum] = Math.Round(ptG2_vpd_x[toothnum], 4);
-			//ptG2_vpd_y[toothnum] = Math.Round(ptG2_vpd_y[toothnum], 4);
-			//ptG3_vpd_x[toothnum] = Math.Round(ptG3_vpd_x[toothnum], 4);
-			//ptG3_vpd_y[toothnum] = Math.Round(ptG3_vpd_y[toothnum], 4);
-			//ptG4_vpd_x[toothnum] = Math.Round(ptG4_vpd_x[toothnum], 4);
-			//ptG4_vpd_y[toothnum] = Math.Round(ptG4_vpd_y[toothnum], 4);
-			//ptG5_vpd_x[toothnum] = Math.Round(ptG5_vpd_x[toothnum], 4);
-			//ptG5_vpd_y[toothnum] = Math.Round(ptG5_vpd_y[toothnum], 4);
-
-
-			//Rcorner_cen_vpd_x[toothnum] = Math.Round(Rcorner_cen_vpd_x[toothnum], 4);
-			//Rcorner_cen_vpd_y[toothnum] = Math.Round(Rcorner_cen_vpd_y[toothnum], 4);
-			//Lcorner_cen_vpd_x[toothnum] = Math.Round(Lcorner_cen_vpd_x[toothnum], 4);
-			//Lcorner_cen_vpd_y[toothnum] = Math.Round(Lcorner_cen_vpd_y[toothnum], 4);
-			//centerrad_x_dwg[toothnum] = Math.Round(centerrad_x_dwg[toothnum], 4);
-			//centerrad_y_dwg[toothnum] = Math.Round(centerrad_y_dwg[toothnum], 4);
-
-			//hi_pt_x[toothnum] = Math.Round(hi_pt_x[toothnum], 4);
-			//hi_pt_y[toothnum] = Math.Round(hi_pt_y[toothnum], 4);
-			//eor_x[toothnum] = Math.Round(eor_x[toothnum], 4);
-			//eor_y[toothnum] = Math.Round(eor_y[toothnum], 4);
-			//backrad_x[toothnum] = Math.Round(backrad_x[toothnum], 4);
-			//backrad_y[toothnum] = Math.Round(backrad_y[toothnum], 4);
-
-			//Backrad_cen_x[toothnum]= Math.Round(backrad_x[toothnum],4);
-			//Backrad_cen_y[toothnum]= Math.Round(backrad_y[toothnum],4);
-
-
-			sendString = string.Concat("pt1_vpd_x[", toothnum, "]=", pt1_vpd_x[toothnum], ",pt1_vpd_y[", toothnum, "]=", pt1_vpd_y[toothnum], ",pt2_vpd_x[", toothnum, "]=", pt2_vpd_x[toothnum], ",pt2_vpd_y[", toothnum, "]=", pt2_vpd_y[toothnum], ",pt3_vpd_x[", toothnum, "]=", pt3_vpd_x[toothnum], ",pt3_vpd_y[", toothnum, "]=", pt3_vpd_y[toothnum], ",pt4_vpd_x[", toothnum, "]=", pt4_vpd_x[toothnum], ",pt4_vpd_y[", toothnum, "]=", pt4_vpd_y[toothnum], ",pt5_vpd_x[", toothnum, "]=", pt5_vpd_x[toothnum], ",pt5_vpd_y[", toothnum, "]=", pt5_vpd_y[toothnum]);
-
-			sendString = string.Concat(sendString, ",ptG2_vpd_x[", toothnum, "]=", ptG2_vpd_x[toothnum], ",ptG2_vpd_y[", toothnum, "]=", ptG2_vpd_y[toothnum], ",ptG3_vpd_x[", toothnum, "]=", ptG3_vpd_x[toothnum], ",ptG3_vpd_y[", toothnum, "]=", ptG3_vpd_y[toothnum], ",ptG4_vpd_x[", toothnum, "]=", ptG4_vpd_x[toothnum], ",ptG4_vpd_y[", toothnum, "]=", ptG4_vpd_y[toothnum], ",ptG5_vpd_x[", toothnum, "]=", ptG5_vpd_x[toothnum], ",ptG5_vpd_y[", toothnum, "]=", ptG5_vpd_y[toothnum]);
-
-			sendString = string.Concat(sendString, ",Rcorner_cen_vpd_x[", toothnum, "]=", Rcorner_cen_vpd_x[toothnum], ",Rcorner_cen_vpd_y[", toothnum, "]=", Rcorner_cen_vpd_y[toothnum], ",Lcorner_cen_vpd_x[", toothnum, "]=", Lcorner_cen_vpd_x[toothnum], ",Lcorner_cen_vpd_y[", toothnum, "]=", Lcorner_cen_vpd_y[toothnum], ",CenterRad_cen_vpd_x[", toothnum, "]=", centerrad_x_dwg[toothnum], ",CenterRad_cen_vpd_y[", toothnum, "]=", centerrad_y_dwg[toothnum]);
-
-			sendString = string.Concat(sendString, ",hi_pt_x[", toothnum, "]=", hi_pt_x[toothnum], ",hi_pt_y[", toothnum, "]=", hi_pt_y[toothnum], ",eor_x[", toothnum, "]=", eor_x[toothnum], ",eor_y[", toothnum, "]=", eor_y[toothnum], ",backrad_x[", toothnum, "]=", backrad_x[toothnum], ",backrad_y[", toothnum, "]=", backrad_y[toothnum]);
-
-
-
-			long str_Length = sendString.Length;
-
-			try {
-				// Convert the string to byte array
-				byte[] RequestBodyInByteArray = Encoding.ASCII.GetBytes(sendString);
-				WebClient client = new WebClient();
-				// Send the PUT request
-				byte[] responseInByteArray = client.UploadData(controllerIPAddress + httpInterfaceURL + "?format=" + format, "PUT", RequestBodyInByteArray);
-				// The httpResponseBody will contain the comma separated errorstatus for each variable.
-				string httpResponseBody = Encoding.ASCII.GetString(responseInByteArray);
-			}
-			catch (WebException someWebException) // if server returns some error code
-			{
-				string httpErrorCode = someWebException.Message;
-				if (null != ((HttpWebResponse)someWebException.Response)) {
-					Stream reader = ((HttpWebResponse)someWebException.Response).GetResponseStream();
-					byte[] message = new byte[reader.Length];
-					reader.Read(message, 0, (int)reader.Length);
-					string httpErrorDescription = Encoding.ASCII.GetString(message);
-				}
-			}
-			catch (Exception someException) // if some other exception happens
-			{
-				string exceptionMessage = someException.Message;
-			}
-		}// end of "SendToolPathMajorpoints_vpd()"
-
 
 	}
 }
