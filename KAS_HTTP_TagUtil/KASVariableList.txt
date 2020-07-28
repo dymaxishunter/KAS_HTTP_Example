@@ -1,0 +1,109 @@
+﻿VAR
+   VelOverridePercent : REAL := 100.0 ;
+      (*$prop4106=1*)
+   ActPos1 : LREAL ;
+      (*$prop4106=1*)
+   Ready : BOOL ;
+      (*$prop4106=1*)
+   ActPos2 : LREAL ;
+      (*$prop4106=1*)
+   EStopButton : BOOL ;
+      (*$prop4106=1*)
+   ResetButton : BOOL ;
+      (*$prop4106=1*)
+   OpenButton : BOOL ;
+      (*$prop4106=1*)
+   CloseButton : BOOL ;
+      (*$prop4106=1*)
+   StartMove : BOOL ;
+      (*$prop4106=1*)
+END_VAR
+VAR
+   CONSTANT EtherCAT : EtherCATCode ;
+END_VAR
+VAR
+   Axis1 : lib:AXIS_REF ;
+   Axis2 : lib:AXIS_REF ;
+   Axis1Fault : BOOL ;
+      (*$prop4106=1*)
+   Axis2Fault : BOOL ;
+      (*$prop4106=1*)
+   Axis1FaultNumber : DINT ;
+      (*$prop4106=1*)
+   Axis1FaultDescription : STRING(240) ;
+      (*$prop4106=1*)
+   Axis2FaultNumber : DINT ;
+      (*$prop4106=1*)
+   Axis2FaultDescription : STRING(240) ;
+      (*$prop4106=1*)
+   Axis1JogPlus : BOOL ;
+      (*$prop4106=1*)
+   Axis1JogMinus : BOOL ;
+      (*$prop4106=1*)
+   Axis1Vel : LREAL := LREAL#200 ;
+      (*$prop4106=1*)
+   Axis1Accel : LREAL := LREAL#1000 ;
+      (*$prop4106=1*)
+   Axis2JogPlus : BOOL ;
+      (*$prop4106=1*)
+   Axis2JogMinus : BOOL ;
+      (*$prop4106=1*)
+   Axis2Vel : LREAL := LREAL#200 ;
+      (*$prop4106=1*)
+   Axis2Accel : LREAL := LREAL#1000 ;
+      (*$prop4106=1*)
+   Axis1SetZero : BOOL ;
+      (*$prop4106=1*)
+   Axis2SetZero : BOOL ;
+      (*$prop4106=1*)
+   Axis1Relative : BOOL ;
+      (*$prop4106=1*)
+   Axis1RelDistance : LREAL := LREAL#90 ;
+      (*$prop4106=1*)
+   Axis2Relative : BOOL ;
+      (*$prop4106=1*)
+   Axis2RelDistance : LREAL := LREAL#90 ;
+      (*$prop4106=1*)
+   MasterVelocity : LREAL := LREAL#200 ;
+      (*$prop4106=1*)
+   Axis1Abs : BOOL ;
+      (*$prop4106=1*)
+   Axis1AbsPos : LREAL ;
+      (*$prop4106=1*)
+   Axis2AbsPos : LREAL ;
+      (*$prop4106=1*)
+   Axis2Abs : BOOL ;
+      (*$prop4106=1*)
+   Axis1PosError : LREAL ;
+      (*$prop4106=1*)
+   Axis2PosError : LREAL ;
+      (*$prop4106=1*)
+   Axis1PosErrorLimit : LREAL := LREAL#300 ;
+      (*$prop4106=1*)
+   Axis1PosErrorLimitExceeded : BOOL ;
+      (*$prop4106=1*)
+   Axis2PosErrorLimit : LREAL := LREAL#300 ;
+      (*$prop4106=1*)
+   Axis2PosErrorLimitExceeded : BOOL ;
+      (*$prop4106=1*)
+   bMotionEngineStarted : BOOL ;
+      (*$prop4106=1*)
+   Stat1Enabled : BOOL ;
+      (*$prop4106=1*)
+   Stat2Enabled : BOOL ;
+      (*$prop4106=1*)
+   StopEngagement : BOOL ;
+      (*$prop4106=1*)
+   Engage_Camming : BOOL ;
+      (*$prop4106=1*)
+   GearingEngaged : BOOL ;
+      (*$prop4106=1*)
+   CammingEngaged : BOOL ;
+      (*$prop4106=1*)
+   Profiles : ProfilesCode ;
+   Engage_Gearing : BOOL ;
+      (*$prop4106=1*)
+   EnterBasicOperation : BOOL ;
+      (*$prop4106=1*)
+   PLCopen : PLCopenCode ;
+END_VAR
