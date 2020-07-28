@@ -13,6 +13,6 @@
  Utility will then import all tags in the specified file and allow you to request the current value of a tag by inputting the tag name into the command line
  
  Updates in progress:
-    Adding tag file selection instead of hard coded
-    implementing single tag write function
-    implementing multiple tag write function
+ - Adding tag file selection instead of hard coded
+ - implementing single tag write function
+ - implementing multiple tag write function
